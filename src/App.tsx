@@ -11,34 +11,12 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  // Link
 } from 'react-router-dom';
 
-// export const light = {
-//   palette: {
-//     type: "light"
-//   }
-// };
-// export const dark = {
-//   palette: {
-//     type: "dark"
-//   }
-// };
-
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: '#B19BB6'
-//     },
-//     secondary: {
-//       main: '#E8D2CB'
-//     }
-//   }
-// });
 
 export default function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <div>
         <Switch>
           <Route path="/reactionGame">
