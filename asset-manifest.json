@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/Brain-Games/static/css/main.34d93d51.chunk.css",
+    "main.js": "/Brain-Games/static/js/main.61f8f224.chunk.js",
+    "main.js.map": "/Brain-Games/static/js/main.61f8f224.chunk.js.map",
+    "runtime-main.js": "/Brain-Games/static/js/runtime-main.c498f2b8.js",
+    "runtime-main.js.map": "/Brain-Games/static/js/runtime-main.c498f2b8.js.map",
+    "static/js/2.4eaa75fe.chunk.js": "/Brain-Games/static/js/2.4eaa75fe.chunk.js",
+    "static/js/2.4eaa75fe.chunk.js.map": "/Brain-Games/static/js/2.4eaa75fe.chunk.js.map",
+    "static/js/3.c6018668.chunk.js": "/Brain-Games/static/js/3.c6018668.chunk.js",
+    "static/js/3.c6018668.chunk.js.map": "/Brain-Games/static/js/3.c6018668.chunk.js.map",
+    "index.html": "/Brain-Games/index.html",
+    "static/css/main.34d93d51.chunk.css.map": "/Brain-Games/static/css/main.34d93d51.chunk.css.map",
+    "static/js/2.4eaa75fe.chunk.js.LICENSE.txt": "/Brain-Games/static/js/2.4eaa75fe.chunk.js.LICENSE.txt",
+    "static/media/memory-colour.a8f728ae.png": "/Brain-Games/static/media/memory-colour.a8f728ae.png",
+    "static/media/reaction-colour.e4ae3958.png": "/Brain-Games/static/media/reaction-colour.e4ae3958.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c498f2b8.js",
+    "static/js/2.4eaa75fe.chunk.js",
+    "static/css/main.34d93d51.chunk.css",
+    "static/js/main.61f8f224.chunk.js"
+  ]
+}
