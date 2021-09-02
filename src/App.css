@@ -1,0 +1,112 @@
+html, body {
+  color: #8C8185;
+  background: #F7F5EB;
+}
+
+#gameScreen {
+  width: 80%;
+  margin: auto;
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  animation: circleShrink 2s ease-in; 
+}
+
+@keyframes circleShrink {
+  from {
+    width: 50px;
+    height: 50px;
+  }
+  to {
+    width: 0px;
+    height: 0px;
+  }
+}
+
+link {
+  text-decoration: none;
+}
+
+#imgReference {
+  position:absolute;
+  width:345px;
+  margin-left:-150px;
+  bottom:5px;
+  left:50%;
+  padding: 5px;
+  border-radius: 10px;
+  color: #8C8185;
+  border: 2px solid#E0F4FF;
+}
+
+a:link, a:visited  {
+  color:#F3BD6A;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+#icons {
+  display: flex;
+  width: 600px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.games {
+  width: 150px;
+  background-color: #F6F6F6;
+  background-color: #666666;
+  padding: 0.5rem;
+  margin: 5rem;
+  border-radius: 20%;
+  transition: transform .2s;
+}
+
+.games:hover{
+  opacity: 0.85;
+  transform: scale(1.1);
+}
+
+#memoryBoard {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boardCell {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  margin: 10px;
+  color: black;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 10%;
+}
+
+#reactionVictory, #nextRound  {
+  display: none;
+}
+
+#settingsCircle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+#memoryGame {
+  display: none;
+}
+
+#Normal {
+  opacity: 0.4;
+}
