@@ -15,9 +15,13 @@ import {
 import { Icon } from '@iconify/react';
 import InfoIcon from '@iconify/icons-eva/info-outline';
 import TitleBar from "../Components/TitleBar"
+import ReactionExplanation from "../Components/ReactionExplanation"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    title: {
+      textAlign: "center"
+    },
     margin: {
       margin: theme.spacing(1),
     },
@@ -63,6 +67,7 @@ interface CircleStats {
 
 export default function ReactionSetting() {
   const classes = useStyles();
+  // Variables that have default values but can be altered to user preference
   const [colour, setColour] = useState("#ff0000");
   const [currentMode, setCurrentMode] = useState("Normal");
   const [circleValues, setCircleValues] = useState<CircleStats>({
@@ -70,10 +75,11 @@ export default function ReactionSetting() {
     shrinkRate: "2",
     goal: 15
   });
+  // Changes values of circleValues according to user input
   const handleChange = (prop: keyof CircleStats) => (event: ChangeEvent<HTMLInputElement>) => {
     setCircleValues({ ...circleValues, [prop]: event.target.value });
   };
-
+  // Change from different pre-set modes
   const changeModes = (mode: string) => {
     if (document.getElementById(currentMode) !== undefined 
       && document.getElementById(currentMode) !== null) document.getElementById(currentMode)!.style.opacity = "1";
@@ -99,9 +105,8 @@ export default function ReactionSetting() {
       })
     }
   }
-  
+  // Variables for popover (info button)
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     console.log(event.currentTarget)
     setAnchorEl(event.currentTarget);
@@ -116,6 +121,9 @@ export default function ReactionSetting() {
     <div>
         <TitleBar title={"Reaction Game"}/>
         <div>
+          <Typography variant="h4" gutterBottom className={classes.title}>
+            Setting
+          </Typography>
           <Popover
             id={id}
             open={open}
@@ -131,80 +139,78 @@ export default function ReactionSetting() {
             }}
           >
             <Typography className={classes.typography}>
-              {/* This game test your reaction by displaying circles that will
-              continue to shrink until it disappers. Your goal is to click on
-              the click as fast as possible before the circle disappears. */}
               3 pre-set modes available. Feel free to alter to your preference.
             </Typography>
           </Popover>
         </div>
-      <div className={classes.setting}>
-        <div className={classes.modes}>
-          <Button id="Easy" onClick={()=>{changeModes("Easy")}}>Easy</Button>
-          <Button id="Normal" onClick={()=>{changeModes("Normal")}}>Normal</Button>    
-          <Button id="Hard" onClick={()=>{changeModes("Hard")}}>Hard</Button> 
-          <Button onClick={handleClick}>
-            <Icon icon={InfoIcon} width="23" height="23" />
-          </Button>
-        </div> 
-        <div className={classes.inputs}>
-          <FormControl className={classes.margin} variant="outlined">
-            <InputLabel htmlFor="circleSize">Circle Size</InputLabel>
-            <OutlinedInput
-                id="circleSize"
-                onChange={handleChange("circleSize")}
-                value={circleValues.circleSize}
-                endAdornment={<InputAdornment position="end">px</InputAdornment>}
-                labelWidth={80}
+        <div className={classes.setting}>
+          <div className={classes.modes}>
+            <Button id="Easy" onClick={()=>{changeModes("Easy")}}>Easy</Button>
+            <Button id="Normal" onClick={()=>{changeModes("Normal")}}>Normal</Button>    
+            <Button id="Hard" onClick={()=>{changeModes("Hard")}}>Hard</Button> 
+            <Button onClick={handleClick}>
+              <Icon icon={InfoIcon} width="23" height="23" />
+            </Button>
+          </div> 
+          <div className={classes.inputs}>
+            <FormControl className={classes.margin} variant="outlined">
+              <InputLabel htmlFor="circleSize">Circle Size</InputLabel>
+              <OutlinedInput
+                  id="circleSize"
+                  onChange={handleChange("circleSize")}
+                  value={circleValues.circleSize}
+                  endAdornment={<InputAdornment position="end">px</InputAdornment>}
+                  labelWidth={80}
+                />
+            </FormControl>
+            <FormControl className={classes.margin} variant="outlined">
+              <InputLabel htmlFor="shrinkRate">Shrink Rate</InputLabel>
+              <OutlinedInput
+                id="shrinkRate"
+                onChange={handleChange("shrinkRate")}
+                value={circleValues.shrinkRate}
+                endAdornment={<InputAdornment position="end">sec</InputAdornment>}
+                labelWidth={90}
               />
-          </FormControl>
-          <FormControl className={classes.margin} variant="outlined">
-            <InputLabel htmlFor="shrinkRate">Shrink Rate</InputLabel>
-            <OutlinedInput
-              id="shrinkRate"
-              onChange={handleChange("shrinkRate")}
-              value={circleValues.shrinkRate}
-              endAdornment={<InputAdornment position="end">sec</InputAdornment>}
-              labelWidth={90}
-            />
-          </FormControl>
-          <FormControl className={classes.margin} variant="outlined">
-            <InputLabel htmlFor="goal">Target Goal</InputLabel>
-            <OutlinedInput
-              id="goal"
-              onChange={handleChange("goal")}
-              value={circleValues.goal}
-              endAdornment={<InputAdornment position="end">circles</InputAdornment>}
-              labelWidth={90}
-            />
-          </FormControl>
+            </FormControl>
+            <FormControl className={classes.margin} variant="outlined">
+              <InputLabel htmlFor="goal">Target Goal</InputLabel>
+              <OutlinedInput
+                id="goal"
+                onChange={handleChange("goal")}
+                value={circleValues.goal}
+                endAdornment={<InputAdornment position="end">circles</InputAdornment>}
+                labelWidth={90}
+              />
+            </FormControl>
+          </div>
+          <div>
+            <TwitterPicker 
+                triangle="hide"
+                color={colour}
+                onChangeComplete={(colour) => {setColour(colour.hex)}}
+              />
+            <div id="settingsCircle" style={{ 
+                backgroundColor: colour, 
+                width: circleValues.circleSize+"px",
+                height: circleValues.circleSize+"px",
+            }}></div>
+          </div>
         </div>
-        <div>
-          <TwitterPicker 
-              triangle="hide"
-              color={colour}
-              onChangeComplete={(colour) => {setColour(colour.hex)}}
-            />
-          <div id="settingsCircle" style={{ 
-              backgroundColor: colour, 
-              width: circleValues.circleSize+"px",
-              height: circleValues.circleSize+"px",
-          }}></div>
-        </div>
-      </div>
-      <Link to={{
-        pathname: "/reactionGame",
-        state: {
-          colour: colour,
-          size: circleValues.circleSize,
-          rate: circleValues.shrinkRate,
-          goal: circleValues.goal
-        }
-      }}>
-        <Button className={classes.beginGame} >
-          <Typography style={{ color: "#8C8185" }}> Begin Game</Typography>
-        </Button>   
-      </Link>
+        <Link to={{
+          pathname: "/reactionGame",
+          state: {
+            colour: colour,
+            size: circleValues.circleSize,
+            rate: circleValues.shrinkRate,
+            goal: circleValues.goal
+          }
+        }}>
+          <Button className={classes.beginGame} >
+            <Typography style={{ color: "#8C8185" }}> Begin Game</Typography>
+          </Button>   
+        </Link>
+      <ReactionExplanation />
     </div>
   );
 }

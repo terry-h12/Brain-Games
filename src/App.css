@@ -40,11 +40,11 @@ link {
   padding: 5px;
   border-radius: 10px;
   color: #8C8185;
-  border: 2px solid#E0F4FF;
+  background-color: #D0D0FE;
 }
 
 a:link, a:visited  {
-  color:#F3BD6A;
+  color:#FBFFDE;
   background-color: transparent;
   text-decoration: underline;
 }
