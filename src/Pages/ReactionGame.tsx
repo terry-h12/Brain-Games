@@ -72,7 +72,6 @@ export default function ReactionGame() {
   const randomCirclePosition = (max: number) => {
     return Math.floor(Math.random() * (max - minValue) + minValue);
   }
-
   // Adds all the features of the circle
   const createCircle = () => {
       const circleTarget = document.createElement('div');
@@ -110,6 +109,9 @@ export default function ReactionGame() {
       if (score < gameGoal) {
         createCircle();
       } else {
+        // Remove all the other circles still on the board
+        const gameScreen = document.getElementById("gameScreen");
+        if (gameScreen !== null) gameScreen.style.display = "none";
         // User is victorious
         clearInterval(interval);
         document.getElementById('menuButton')!.className = classes.menu;
@@ -146,9 +148,8 @@ export default function ReactionGame() {
           showPercentageSymbol={true}
         />
       </div>
-      <div id="gameScreen">
-        <div id="victory" className={classes.victory}>Victory!</div>
-      </div>
+      <div id="gameScreen"></div>
+      <div id="victory" className={classes.victory}>Victory!</div>
     </div>
   );
 }
